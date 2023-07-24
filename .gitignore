@@ -1,0 +1,4 @@
+dmake
+sunmake
+*.o
+*.core
