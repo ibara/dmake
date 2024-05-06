@@ -40,7 +40,7 @@
 /*
  * Included files
  */
-#include <bsd/bsd.h>		/* bsd_signal() */
+#include <bsdcompat.h>	/* bsd_signal() */
 #include <mksh/i18n.h>		/* get_char_semantics_value() */
 #include <mksh/misc.h>
 #include <stdarg.h>		/* va_list, va_start(), va_end() */

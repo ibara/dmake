@@ -1,4 +1,6 @@
 dmake
+dmake_bootstrap
 sunmake
+make.rules
 *.o
 *.core

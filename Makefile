@@ -4,7 +4,7 @@ PREFIX =	/usr/local
 MANDIR =	man/man1
 
 CXXFLAGS +=	-Iinclude -I/usr/local/include -D_FILE_OFFSET_BITS=64 \
-		-Wno-format -Wno-parentheses -Wno-switch
+		-Wno-format -Wno-parentheses -Wno-switch -Wno-unused-result
 
 PROG =	dmake
 OBJS =	bin/ar.o bin/depvar.o bin/doname.o bin/dosys.o bin/files.o \
@@ -19,7 +19,7 @@ OBJS =	bin/ar.o bin/depvar.o bin/doname.o bin/dosys.o bin/files.o \
 	lib/vroot/vroot.o
 
 all: ${OBJS}
-	${CXX} ${CXXFLAGS} ${LDFLAGS} -o ${PROG} ${OBJS}
+	${CXX} ${CXXFLAGS} ${LDFLAGS} -o ${PROG} ${OBJS} ${LIBS}
 
 ${OBJS}:
 	${CXX} ${CXXFLAGS} -o $@ -c $<

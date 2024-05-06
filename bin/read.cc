@@ -34,6 +34,7 @@
 /*
  * Included files
  */
+#include <bsdcompat.h>
 #include <alloca.h>		/* alloca() */
 #include <errno.h>		/* errno */
 #include <fcntl.h>		/* fcntl() */

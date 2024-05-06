@@ -339,8 +339,7 @@ getopt(int argc, char *const *argv, const char *optstring)
 /*
  * Included files
  */
-#include <bsd/bsd.h>		/* bsd_signal() */
-
+#include <bsdcompat.h>	/* bsd_signal() */
 
 #include <ctype.h>
 #include <locale.h>		/* setlocale() */

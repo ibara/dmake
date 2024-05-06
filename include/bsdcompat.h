@@ -24,12 +24,27 @@
  */
 
 /*
- * bsd/bsd.h: Interface definitions to BSD compatibility functions for SVR4.
+ * bsdcompat.h: Interface definitions to BSD compatibility functions for SVR4.
  */
 
-#ifndef _BSD_BSD_H
-#define _BSD_BSD_H
+#ifndef _BSDCOMPAT_H
+#define _BSDCOMPAT_H
+
+#include <sys/param.h>  /* defines 'BSD' on *BSD systems */
+#ifndef BSD
+#include <bsd/stdlib.h>  /* libbsd getprogname() */
+#endif
 
 #include <signal.h>
 
+/*
+ * Needed on Linux (GLibc) and FreeBSD.
+ * On Linux using bsd_signal works with C files but in C++ it fails.
+ * Even when the prototypes are declared manually the linker will sill
+ * somehow fail.
+ */
+#if defined(__GLIBC__) || defined(__FreeBSD__) || defined(__DragonFly__)
+#define bsd_signal signal
 #endif
+
+#endif //!_BSDCOMPAT_H
