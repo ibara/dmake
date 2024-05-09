@@ -41,6 +41,7 @@
 /*
  * Included files
  */
+#include <bsdcompat.h>
 #include <errno.h>
 #include <mk/defs.h>
 #include <mksh/macro.h>		/* SETVAR() */

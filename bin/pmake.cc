@@ -32,12 +32,23 @@
 #include <mksh/misc.h>
 #include <netdb.h>
 #include <netinet/in.h>
+#include <sys/param.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/utsname.h>
+#ifdef BSD
 #include <rpc/rpc.h>		/* host2netname(), netname2host() */
+#endif
 #include <unistd.h>
+
+#ifndef MAXHOSTNAMELEN
+#define MAXHOSTNAMELEN 255
+#endif
+#ifndef MAXNETNAMELEN
+#define MAXNETNAMELEN MAXHOSTNAMELEN
+#endif
+
 
 /*
  * Defined macros
@@ -80,8 +91,8 @@ read_make_machines(Name make_machines_name)
 	wchar_t			c;
 	Boolean			default_make_machines;
 	struct hostent		*hp;
-	wchar_t			local_host[MAX_HOSTNAMELEN + 1];
-	char			local_host_mb[MAX_HOSTNAMELEN + 1] = "";
+	wchar_t			local_host[MAXHOSTNAMELEN + 1];
+	char			local_host_mb[MAXHOSTNAMELEN + 1] = "";
 	int			local_host_wslen;
 	wchar_t			full_host[MAXNETNAMELEN + 1];
 	int			full_host_wslen = 0;
@@ -233,10 +244,10 @@ read_make_machines(Name make_machines_name)
 			WCSTOMBS(mbs_buffer, mp);
 			/*
 			 * Print "Ignoring unknown host" if:
-			 * 1) hostname is longer than MAX_HOSTNAMELEN, or
+			 * 1) hostname is longer than MAXHOSTNAMELEN, or
 			 * 2) hostname is unknown
 			 */
-			if ((wcslen(mp) > MAX_HOSTNAMELEN) ||
+			if ((wcslen(mp) > MAXHOSTNAMELEN) ||
 			    ((hp = gethostbyname(mbs_buffer)) == NULL)) {
 				warning(gettext("Ignoring unknown host %s"),
 					mbs_buffer);

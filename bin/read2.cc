@@ -34,6 +34,7 @@
 /*
  * Included files
  */
+#include <bsdcompat.h>
 #include <mk/defs.h>
 #include <mksh/dosys.h>		/* sh_command2string() */
 #include <mksh/macro.h>		/* expand_value() */
